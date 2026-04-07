@@ -8,6 +8,18 @@ router.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
+    const validUsername = await pool.query(
+      "SELECT * FROM users WHERE username = $1",
+      [username]
+    );
+    if(validUsername.rowCount !== 0) return res.status(409).json({error: "Username already exists"})
+
+    const validEmail = await pool.query(
+      "SELECT * FROM users WHERE email = $1",
+      [email]
+    );
+    if(validEmail.rowCount !== 0) return res.status(409).json({error: "Email already in use"})
+
     const hashedPassword = await hashPassword(password);
 
     const result = await pool.query(
