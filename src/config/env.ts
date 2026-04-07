@@ -11,7 +11,7 @@ function getEnv(key: string): string {
 }
 
 export const env = {
-    PORT: process.env.PORT || "3001",
+    PORT: process.env.PORT || 8080,
     DEV_DATABASE_URL: getEnv("DEV_DATABASE_URL"),
     JWT_SECRET: getEnv("JWT_SECRET"),
 };
