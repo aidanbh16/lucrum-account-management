@@ -6,6 +6,7 @@ import { env } from "./config/env";
 import signupRoute from "./routes/signup.route";
 import loginRoute from "./routes/login.route";
 import logoutRoute from "./routes/logout.route";
+import userRoute from "./routes/user.route"
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use("/auth", signupRoute);
 app.use("/auth", loginRoute);
 app.use("/auth", logoutRoute);
+app.use("/auth", userRoute);
 
 app.get("/", (req, res) => {
   res.send("Lucrum Account Management System is running");
