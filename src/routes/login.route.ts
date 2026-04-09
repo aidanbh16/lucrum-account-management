@@ -26,7 +26,7 @@ router.post("/login", async (req, res) => {
             { expiresIn: "7d" }
         );
 
-        res.cookie("token", token, {
+        res.cookie("user", token, {
             httpOnly: true,
             secure: false, // true in production
             sameSite: "lax",
