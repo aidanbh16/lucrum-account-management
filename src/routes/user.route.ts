@@ -6,8 +6,6 @@ const router = Router();
 
 router.get("/user", (req, res) => {
     const token = req.cookies.user;
-    console.log("COOKIES:", req.cookies);
-    console.log("TOKEN:", req.cookies.user);
 
     if (!token) {
         return res.status(401).json({ user: null });
