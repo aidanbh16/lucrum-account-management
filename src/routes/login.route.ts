@@ -11,20 +11,13 @@ router.post("/login", async (req, res) => {
 
     try {
         const result = await pool.query(
-            "SELECT * FROM users WHERE email = $1",
+            "SELECT id, password FROM users WHERE email = $1",
             [email]
         );
-
         const user = result.rows[0];
 
-        if (!user) {
-            return res.status(400).json({ error: "User not found" });
-        }
-
-        const isMatch = await comparePassword(password, user.password);
-
-        if (!isMatch) {
-            return res.status(400).json({ error: "Invalid password" });
+        if (!user || !(await comparePassword(password, user.password))) {
+            return res.status(401).json({ error: "Invalid credentials" });
         }
 
         const token = jwt.sign(

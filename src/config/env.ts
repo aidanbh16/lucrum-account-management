@@ -2,16 +2,9 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-function getEnv(key: string): string {
-  const value = process.env[key];
-  if (!value) {
-    throw new Error(`Missing environment variable: ${key}`);
-  }
-  return value;
-}
-
 export const env = {
     PORT: process.env.PORT || 8080,
-    DEV_DATABASE_URL: getEnv("DEV_DATABASE_URL"),
-    JWT_SECRET: getEnv("JWT_SECRET"),
+    FRONTEND_URL: process.env.FRONTEND_URL || "http://localhost:3000",
+    DEV_DATABASE_URL: process.env.DEV_DATABASE_URL,
+    JWT_SECRET: process.env.JWT_SECRET,
 };
