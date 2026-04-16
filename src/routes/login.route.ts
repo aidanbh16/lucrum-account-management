@@ -28,8 +28,8 @@ router.post("/login", async (req, res) => {
 
         res.cookie("user", token, {
             httpOnly: true,
-            secure: true, // true in production
-            sameSite: "lax",
+            secure: true, // true in production, false in dev
+            sameSite: "none", // "none" in production, "lax" in dev
         });
 
         return res.json({ message: "Login successful" });

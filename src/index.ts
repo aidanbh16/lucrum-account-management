@@ -10,11 +10,11 @@ import userRoute from "./routes/user.route"
 
 const app = express();
 
+const allowedOrigins = process.env.ALLOWED_FRONTEND_ORIGINS?.split(",") || [];
 
 app.use(cors({
-  origin: env.FRONTEND_URL,
+  origin: allowedOrigins,
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 }));
 app.use(express.json());
 app.use(cookieParser());
