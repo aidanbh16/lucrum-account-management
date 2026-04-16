@@ -13,7 +13,13 @@ const app = express();
 const allowedOrigins = process.env.ALLOWED_FRONTEND_ORIGINS?.split(",") || [];
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("Not allowed by CORS"));
+  },
   credentials: true,
 }));
 app.use(express.json());
