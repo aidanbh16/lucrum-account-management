@@ -11,7 +11,7 @@ import userRoute from "./routes/user.route"
 const app = express();
 
 const allowedOrigins = process.env.ALLOWED_FRONTEND_ORIGINS?.split(",") || [];
-
+console.log(allowedOrigins)
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
