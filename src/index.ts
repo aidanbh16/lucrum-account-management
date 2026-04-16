@@ -10,14 +10,18 @@ import userRoute from "./routes/user.route"
 
 const app = express();
 
-const allowedOrigins = process.env.ALLOWED_FRONTEND_ORIGINS?.split(",") || [];
-console.log(allowedOrigins)
+const allowedOrigins = [
+  "https://lucrumproject.com",
+  "https://www.lucrumproject.com",
+];
+
 app.use(cors({
-  origin: function (origin, callback) {
+  origin: (origin, callback) => {
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
     }
+
     return callback(new Error("Not allowed by CORS"));
   },
   credentials: true,
