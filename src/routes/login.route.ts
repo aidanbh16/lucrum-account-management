@@ -30,7 +30,8 @@ router.post("/login", async (req, res) => {
             httpOnly: true,
             secure: true, // true in production, false in dev
             sameSite: "none", // "none" in production, "lax" in dev
-            domain: ".lucrumproject.com"
+            domain: ".lucrumproject.com",
+            expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
         });
 
         return res.json({ message: "Login successful" });
