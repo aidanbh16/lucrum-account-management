@@ -10,10 +10,10 @@ import userRoute from "./routes/user.route"
 
 const app = express();
 
-const allowedOrigins = [
-  "https://lucrumproject.com",
-  "https://www.lucrumproject.com",
-];
+const allowedOrigins = (process.env.ALLOWED_FRONTEND_ORIGINS ?? "")
+  .split(",")
+  .map(o => o.trim())
+  .filter(Boolean);
 
 app.use(cors({
   origin: (origin, callback) => {
