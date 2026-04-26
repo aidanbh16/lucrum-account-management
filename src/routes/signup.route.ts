@@ -7,6 +7,13 @@ const router = Router();
 router.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
 
+  if (!password || !/[A-Z]/.test(password)) {
+    return res.status(400).json({ error: "Password must contain at least one capital letter" });
+  }
+  if (!/[^a-zA-Z0-9]/.test(password)) {
+    return res.status(400).json({ error: "Password must contain at least one special character" });
+  }
+
   try {
     const validUsername = await pool.query(
       "SELECT * FROM users WHERE username = $1",
