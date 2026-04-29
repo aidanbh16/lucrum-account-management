@@ -28,10 +28,9 @@ router.post("/login", async (req, res) => {
 
         res.cookie("user", token, {
             httpOnly: true,
-            secure: true, // true in production, false in dev
-            sameSite: "none", // "none" in production, "lax" in dev
-            domain: ".lucrumproject.com",
-            expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
+            secure: true,
+            sameSite: "none",
+            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
         });
 
         return res.json({ message: "Login successful" });
