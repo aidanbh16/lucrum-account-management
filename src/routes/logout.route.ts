@@ -3,7 +3,7 @@ import { Router } from "express";
 const router = Router();
 
 router.post("/logout", (req, res) => {
-    res.clearCookie("user", { httpOnly: true, secure: true, sameSite: "none" });
+    res.clearCookie("user", { httpOnly: true, secure: true, sameSite: "none", domain: env.COOKIE_DOMAIN });
   
     return res.json({ message: "Logged out successfully" });
 });
