@@ -1,7 +1,6 @@
 # Lucrum Account Management Service
 
-This repository contains the Account Management Service (AMS) for Lucrum.  
-It is an Express-based backend responsible for user authentication and account management.
+This repository contains the Account Management Service (AMS) for Lucrum, a personal finance management application. Built with Node.js, Express, and TypeScript, it is the authentication backbone of the Lucrum platform — handling user registration, login, logout, and session validation. Passwords are hashed with bcrypt before storage and validated for strength at signup. On login, a signed JWT is issued and stored in a secure HTTP-only cookie with a 7-day expiry, which the frontend and other services rely on to identify the current user. The service connects to a PostgreSQL database via a connection pool and exposes a small REST API consumed by the Lucrum frontend.
 
 ---
 
